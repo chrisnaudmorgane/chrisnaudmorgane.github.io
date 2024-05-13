@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+import os
+import glob
+
+message_commit = input()
+os.system(f"git add .; git commit -m \"{message_commit}\"; git push")
+cle

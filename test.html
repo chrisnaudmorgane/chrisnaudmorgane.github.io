@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Phishing Email Test</title>
+        <!-- Include Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-900 text-white">
+
+    <!-- Header -->
+    <header class="py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Logo -->
+                <a href="#" class="flex-shrink-0">
+                    <img src="chris.jpg" alt="Logo" class="h-10 object-contain">
+                </a>
+                <!-- Site Title -->
+                <h1 class="text-2xl font-semibold ml-2">Email Sensitization Campaign</h1>
+            </div>
+            <!-- Navigation Links -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="Accueil.html" class="hover:text-gray-300">Accueil</a></li>
+                    <li><a href="propos.html" class="hover:text-gray-300">À Propos</a></li>
+                    <li><a href="ressources.html" class="hover:text-gray-300">Ressources</a></li>
+                    <li><a href="contact.html" class="hover:text-gray-300">Contact</a></li>
+                    <li><a href="test.html" class="hover:text-gray-300">Test</a></li>
+                    <li><a href="chatbot.html" class="hover:text-gray-300">Chatbot</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Test Form -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Test de Phishing Email</h2>
+            <form id="phishing-form" class="w-full max-w-md mx-auto">
+                <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
+                    <input id="email-input" class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Entrez l'adresse e-mail" aria-label="Adresse e-mail">
+                    <button id="check-button" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Vérifier
+                    </button>
+                </div>
+                <!-- Result -->
+                <div id="result" class="mt-4">
+                    <!-- Résultat de la vérification s'affichera ici -->
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-gray-300">&copy; 2024 Email Sensitization Campaign. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script pour la vérification -->
+    <script>
+        document.getElementById('check-button').addEventListener('click', function() {
+            var email = document.getElementById('email-input').value;
+            var resultElement = document.getElementById('result');
+
+            // Fonction pour vérifier le domaine de l'e-mail
+            function checkEmailDomain(email) {
+                // Définir une liste de domaines de confiance
+                var trustedDomains = ['yourbank.com', 'trustedcompany.com']; // Ajoutez ici des domaines de confiance
+
+                // Extraire le domaine de l'adresse e-mail
+                var domain = email.split('@')[1];
+
+                // Vérifier si le domaine est dans la liste des domaines de confiance
+                if (trustedDomains.includes(domain)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            // Vérification du domaine de l'e-mail saisi
+            if (checkEmailDomain(email)) {
+                resultElement.innerHTML = '<p class="text-green-500">L\'e-mail provient d\'un domaine fiable.</p>';
+            } else {
+                resultElement.innerHTML = '<p class="text-red-500">Cet e-mail provient d\'un domaine non fiable.</p>';
+            }
+        });
+</script>
+
+
+    </body>
+</html>
