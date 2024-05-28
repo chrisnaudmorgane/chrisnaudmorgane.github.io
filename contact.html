@@ -42,7 +42,8 @@
                     <!-- Contact Form -->
                     <div>
                         <h3 class="text-xl md:text-2xl font-semibold mb-4">Envoyez-nous un message</h3>
-                        <form id="contactForm" class="space-y-4">
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="space-y-4">
+                            <input type="hidden" name="access_key" value="4bf79998-01cb-4a5a-8ccc-9aded2bd8474">
                             <div>
                                 <label for="name" class="block text-sm font-medium">Nom</label>
                                 <input type="text" id="name" name="name" class="mt-1 px-4 py-2 w-full bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500" placeholder="Votre nom" required>
@@ -93,55 +94,5 @@
         <footer class="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-300">&copy; 2024 Email Sensitization Campaign. Tous droits réservés.</p>
         </footer>
-
-        <!-- Script pour gérer l'envoi des données du formulaire -->
-        <script>
-            document.getElementById('contactForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Empêche la soumission du formulaire par défaut
-
-                // Récupère les valeurs des champs du formulaire
-                var name = document.getElementById('name').value;
-                var email = document.getElementById('email').value;
-                var message = document.getElementById('message').value;
-
-                // Crée un objet JavaScript avec les valeurs des champs
-                var formData = {
-                    name: name,
-                    email: email,
-                    message: message
-                };
-
-                // Convertit l'objet JavaScript en format JSON
-                var jsonData = JSON.stringify(formData);
-
-                // Affiche les données JSON dans la console
-                console.log(jsonData);
-
-                // Envoie les données JSON au serveur
-                fetch('saveFormData.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: jsonData
-                })
-                .then(response => {
-                    // Vérifie si la requête a réussi
-                    if (response.ok) {
-                        alert('Votre message a été envoyé avec succès ! Nous vous répondrons dès que possible.');
-                    } else {
-                        alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Une erreur s\'est produite :', error);
-                    alert('Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer.');
-                });
-
-                // Réinitialise le formulaire après l'envoi
-                document.getElementById('contactForm').reset();
-            });
-        </script>
-
     </body>
 </html>

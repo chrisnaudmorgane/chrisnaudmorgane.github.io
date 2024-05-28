@@ -60,33 +60,26 @@
 
     <!-- Script pour la vérification -->
     <script>
-        document.getElementById('check-button').addEventListener('click', function() {
-            var email = document.getElementById('email-input').value;
-            var resultElement = document.getElementById('result');
+        function detectPhishing(emailContent) {
+        // Liste de domaines de confiance
+        const trustedDomains = ['yourbank.com', 'trustedcompany.com'];
 
-            // Fonction pour vérifier le domaine de l'e-mail
-            function checkEmailDomain(email) {
-                // Définir une liste de domaines de confiance
-                var trustedDomains = ['yourbank.com', 'trustedcompany.com']; // Ajoutez ici des domaines de confiance
+        // Vérifie si le domaine de l'expéditeur est dans la liste des domaines de confiance
+        const domain = emailContent.split('@')[1];
+        if (!trustedDomains.includes(domain)) {
+            return true; // Indique que l'email pourrait être de phishing
+        }
 
-                // Extraire le domaine de l'adresse e-mail
-                var domain = email.split('@')[1];
+        // Autres règles de filtrage peuvent être ajoutées ici
 
-                // Vérifier si le domaine est dans la liste des domaines de confiance
-                if (trustedDomains.includes(domain)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        return false; // L'email est considéré comme sûr
+    }
 
-            // Vérification du domaine de l'e-mail saisi
-            if (checkEmailDomain(email)) {
-                resultElement.innerHTML = '<p class="text-green-500">L\'e-mail provient d\'un domaine fiable.</p>';
-            } else {
-                resultElement.innerHTML = '<p class="text-red-500">Cet e-mail provient d\'un domaine non fiable.</p>';
-            }
-        });
+    // Exemple d'utilisation
+    const emailContent = "Votre email contenant le contenu de l'email";
+    const isPhishing = detectPhishing(emailContent);
+    console.log(isPhishing? "Email potentiellement de phishing" : "Email sûr");
+
 </script>
 
 
